@@ -1,0 +1,43 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body{
+  background-color: rgb(31, 34, 35);
+}
+
+.ql-align-center{
+  text-align: center;
+}
+.ql-align-right{
+  text-align: right;
+}
+.ql-size-huge{
+  font-size: 2.5em;
+}
+.ql-size-large{
+  font-size: 1.5em;
+}
+.ql-size-small{
+  font-size: 0.75em;
+}
+.section::-webkit-scrollbar {
+  width: 10px;
+}
+.section::-webkit-scrollbar-track {
+  background-color: rgb(122, 120, 120);
+}
+.section::-webkit-scrollbar-thumb {
+  /* box-shadow: inset 0 0 6px rgba(29, 22, 22, 0.3); */
+  background-color: rgb(73, 72, 72);
+}
+.ql-snow .ql-picker {
+  color: rgb(189, 183, 175);
+}
+.ql-snow .ql-stroke {
+  fill: none;
+  stroke: rgb(189, 183, 175);
+}
+.ql-snow .ql-fill, .ql-snow .ql-stroke.ql-fill {
+    fill: rgb(189, 183, 175);
+}
