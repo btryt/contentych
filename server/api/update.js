@@ -7,7 +7,6 @@ const router = Router()
 
 router.post("/update",[authMiddleware,adminMiddleware],async (req,res)=>{
     const {topic_id,title,description,content} = req.body
-    console.log(description)
     if(!title.trim().length || !content.trim().length){
         return res.status(400).send({message:"Должено быть назавние темы и её содержание"})
     }

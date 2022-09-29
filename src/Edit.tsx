@@ -70,26 +70,26 @@ const Edit:React.FC = () =>{
 
     return (
         <div className='p-3 mx-3 mt-3 rounded-md h-full lg:flex lg:justify-center '>
-        <div className='flex flex-col h-full bg-gray-400 shadow-lg lg:w-2/3'>
+        <div style={{backgroundColor:"rgb(38, 43, 41)",color:"rgb(176, 169, 159)"}} className='flex flex-col h-full  shadow-lg lg:w-2/3'>
         <div className=' border-b-2 border-black'>
             <h1 className='text-2xl p-2 text-center break-all'>
                 Изменение темы - <b>{title}</b>
             </h1>
-        </div>
+        </div >
             <div className='m-2 p-2 flex flex-col'>
                 <label htmlFor='title'>Название темы *</label>
-                <input defaultValue={title} ref={titleRef}  className='p-1 rounded-sm bg-gray-300' id='title' type="text" />
+                <input style={{backgroundColor:"rgb(47, 51, 53)"}} defaultValue={title} ref={titleRef}  className='p-1 rounded-sm' id='title' type="text" />
             </div>
             <div className='m-2 p-2 flex flex-col'>
                 <label htmlFor='description'>Описание темы (необязательно)</label>
-                <input defaultValue={description} ref={descriptionRef} className='p-1 rounded-sm bg-gray-300' id='description' type="text" />
+                <input style={{backgroundColor:"rgb(47, 51, 53)"}} defaultValue={description} ref={descriptionRef} className='p-1 rounded-sm ' id='description' type="text" />
             </div>
             <div className='m-2 p-2 flex flex-col'>
              <TextEditor content={content} setContent={setContent} ref={contentRef} />
             </div>
             <div className='p-2 w-full flex justify-end' >
-                <button onClick={backToTopic} className='border-2 border-black transition-colors p-3 rounded-md hover:bg-green-400  mx-2'>Вернуться к теме</button>
-                <button onClick={update} className='border-2 border-black transition-colors p-3 rounded-md hover:bg-green-400  mx-2'>Сохранить изменения</button>
+                <button onClick={backToTopic} className='border-2 border-black transition-colors p-3 rounded-md bg-red-700 hover:bg-red-600  mx-2'>Вернуться к теме</button>
+                <button onClick={update} className='border-2 border-black transition-colors p-3 rounded-md bg-green-700 hover:bg-green-800  mx-2'>Сохранить изменения</button>
              </div>
              {errorMessage && <Alert>{errorMessage}</Alert>}
         </div>

@@ -15,11 +15,6 @@ interface BreadCrumbsProps {
   }
 }
 
-const t = [
-  { id: 2, parent_id: 1, title: "Шампиньон", level: 1 },
-  { id: 3, parent_id: 1, title: "Лисички", level: 1 },
-  { id: 1, parent_id: null, title: "Грибы", level: 2 },
-]
 
 const BreadCrumbs: React.FC<BreadCrumbsProps> = ({ tree, parent }) => {
   return (

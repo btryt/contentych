@@ -16,6 +16,7 @@ import upload from './api/upload.js'
 import sections from './api/sections.js'
 import createSection from './api/createSection.js'
 import deleteSection from './api/deleteSection.js'
+import updateSection from './api/updateSection.js'
 dotEnv.config()
 const app = express()
 app.use(cors({origin:process.env.ORIGIN,credentials:true}))
@@ -36,6 +37,7 @@ app.use("/api",getTopic)
 app.use("/api",sections)
 app.use("/api",createSection)
 app.use("/api",deleteSection)
+app.use("/api",updateSection)
 app.use("/api",create)
 app.use("/api",find)
 app.use("/api",update)

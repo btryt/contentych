@@ -6,9 +6,9 @@ const router = Router()
 
 
 router.post("/delete",[authMiddleware,adminMiddleware],async (req,res)=>{
-    const {topic_id} = req.body
+    const {section_id} = req.body
     try {
-        await query("DELETE FROM topic WHERE topic_id = $1",[topic_id])
+        await query("DELETE FROM topic WHERE section_id = $1",[section_id])
 
         res.send({message:"Тема успешно удалена"})
     } catch (error) {

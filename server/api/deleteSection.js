@@ -1,10 +1,11 @@
 import {Router} from 'express'
 import { query } from '../db/query.js'
+import adminMiddleware from '../middleware/adminMiddleware.js'
 import authMiddleware from '../middleware/authMiddleware.js'
 const router = Router()
 
 
-router.post("/section/delete",authMiddleware,async (req,res)=>{
+router.post("/section/delete",[authMiddleware,adminMiddleware],async (req,res)=>{
     const body = req.body
     try {
         await query("DELETE FROM section WHERE id = $1",[body.id])

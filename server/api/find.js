@@ -8,11 +8,10 @@ router.get("/find",authMiddleware,async (req,res)=>{
     const queryParam = req.query
 
     try {
-        const topic = await query("SELECT topic_id, title,description FROM topic WHERE title ~* $1",[queryParam.title])
-        if(topic.rows.length){
-           return res.send(topic.rows)
-        }
-        res.send([])
+        const topic = await query("SELECT id, title FROM section WHERE title ~* $1",[queryParam.title])
+        
+        res.send({topic:topic.rows})
+
     } catch (error) {
         res.status(500).send({message:"Упс... Что-то поломалось"})
     }

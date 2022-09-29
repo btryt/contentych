@@ -47,7 +47,7 @@ const Create:React.FC<CreateProps> = ({getTopic,id}) =>{
 
     return (
     <div style={{color:"rgb(176, 169, 159)"}} className=' mt-3 rounded-md h-full  flex lg:justify-center'>
-        <div style={{backgroundColor:"rgb(62, 67, 69)"}}  className='flex flex-col h-full shadow-lg lg:w-2/3'>
+        <div style={{backgroundColor:"rgb(38, 43, 41)"}}  className='flex flex-col h-full shadow-lg lg:w-2/3'>
         <div style={{borderColor:"rgb(140, 130, 115)"}} className=' border-b-2'>
             <h1 className='text-2xl p-2 text-center'>
                 Создание темы
@@ -73,4 +73,4 @@ const Create:React.FC<CreateProps> = ({getTopic,id}) =>{
     )
 }
 
-export default Create
+export default React.memo(Create)

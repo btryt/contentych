@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useCallback, useEffect, useState } from 'react'
 import { Outlet, useNavigate, useParams } from 'react-router-dom'
 import Alert from './Alert'
 import BreadCrumbs from './BreadCrumbs'
@@ -19,7 +19,7 @@ const Topic:React.FC = () =>{
     const [parent,setParent] = useState<any>({parent_id:null,title:""})
     const [hasTopic,setHasTopic] = useState(false)
 
-    const getTopic = () =>{
+    const getTopic = useCallback(() =>{
         fetch("/api/topic/" + params.id)
         .then(async (res:Response) =>{
             if(res.ok){
@@ -42,7 +42,7 @@ const Topic:React.FC = () =>{
                 }
             }
         })
-    }
+    },[params.id])
 
     useEffect(()=>{
         getTopic()
@@ -52,7 +52,9 @@ const Topic:React.FC = () =>{
         location(`/edit/${params.id}`)
     }
     const deleteTopic = () =>{
-        fetch("/api/delete",{method:"POST",headers: { "Content-Type": "application/json" },body:JSON.stringify({topic_id:params.id})})
+        const resume = confirm("Удалить эту тему?")
+        if(!resume) return
+        fetch("/api/delete",{method:"POST",headers: { "Content-Type": "application/json" },body:JSON.stringify({section_id:params.id})})
         .then(async (res:Response)=>{
             const {message} = await res.json()
             if(res){
@@ -62,12 +64,12 @@ const Topic:React.FC = () =>{
     }
     return (
     <>
+    <Sections id={params.id} title={parent.title}/>
     <div className='w-full p-2'>
         <BreadCrumbs tree={tree} parent={parent} />
     </div>
-     <Sections id={params.id}/>
     {hasTopic ? <div className='w-full mt-2 lg:flex lg:justify-center '>
-        <div className='mx-3 p-2 text-slate-400  rounded-sm break-all lg:w-3/4'>
+        <div style={{backgroundColor:"rgb(38, 43, 41)"}} className='mx-3 p-2 text-slate-400  rounded-sm break-all lg:w-3/4 border-2 border-slate-700'>
             <div><h1 className='text-2xl break-all border-b-2 border-black p-2'><b>Тема - {topic.title}</b></h1></div>
             <div><h2 className='text-xl mt-2 break-all p-2 ml-2'></h2><b>{!topic.description.length ? "Описание отсутствует":`Описание: ${topic.description}`}</b></div>
             <div className='mt-5 border-t-2 border-black' dangerouslySetInnerHTML={{__html:topic.content}}></div>

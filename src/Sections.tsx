@@ -1,15 +1,17 @@
-import React, { useEffect, useRef, useState } from "react"
-import { Link, Outlet } from "react-router-dom"
-import Create from "./Create"
-
-type SectionsProp = { id?: number | string | undefined }
+import React, { useCallback, useEffect, useRef, useState } from "react"
+import { Link} from "react-router-dom"
+import { GoPencil, GoTrashcan } from "react-icons/go"
+type SectionsProp = { 
+  id?: number | string | undefined
+  title?:string
+}
 
 type SectionState = { id: number; title: string }
 
-const Sections: React.FC<SectionsProp> = ({ id }) => {
+const Sections: React.FC<SectionsProp> = ({ id,title }) => {
   const [sections, setSections] = useState<any>([])
   const inputRef = useRef<any>(null)
-  const getSections = () => {
+  const getSections = useCallback(() => {
     fetch(`/api/sections${id === undefined ? "" : `?id=${id}`} `).then(
       async (res: Response) => {
         if (res.ok) {
@@ -18,7 +20,7 @@ const Sections: React.FC<SectionsProp> = ({ id }) => {
         }
       }
     )
-  }
+  },[id])
 
   useEffect(() => {
     getSections()
@@ -37,6 +39,7 @@ const Sections: React.FC<SectionsProp> = ({ id }) => {
       })
       .then((res:Response) =>{
         if(res.ok){
+            inputRef.current.value = ""
             getSections()
         }
       })
@@ -44,16 +47,25 @@ const Sections: React.FC<SectionsProp> = ({ id }) => {
   }
 
   const deleteSection = (id:string | number) =>{
-    console.log(id)
       let resume = confirm("При удалении раздела удалятся все вложенные разделы и темы. Продолжить?")
-      if(resume){
+      if(!resume) return
         fetch("/api/section/delete",{method:"POST",headers: { "Content-Type": "application/json" },body:JSON.stringify({id})})
         .then((res:Response)=>{
           if(res.ok){
             getSections()
           }
         })
+      
+  }
+  const updateSection = (id:string | number,title:string) =>{
+    const newTitle = prompt("Новое название для раздела " + title,title)?.trim()
+    if(!newTitle || newTitle == title) return
+    fetch("/api/section/update",{method:"POST",headers: { "Content-Type": "application/json" },body:JSON.stringify({id,title:newTitle})})
+    .then((res:Response)=>{
+      if(res.ok){
+        getSections()
       }
+    })
   }
   return (
     <div
@@ -61,6 +73,7 @@ const Sections: React.FC<SectionsProp> = ({ id }) => {
       className="w-full lg:flex lg:justify-center"
     >
       <div className="lg:w-2/4 p-2 m-2 ">
+      <h1 className="text-center mb-2 text-lg">Список разделов темы <b className="border-b-2">{title}</b></h1>
         <div className="flex justify-center">
           <input
             ref={inputRef}
@@ -84,8 +97,11 @@ const Sections: React.FC<SectionsProp> = ({ id }) => {
                 <Link to={`/topic/${section.id}`} className="flex-1 p-3 ">
                   {section.title}
                 </Link>
-                <div onClick={()=>deleteSection(section.id)} className="text-2xl mr-2 p-1 w-10 text-center cursor-pointer text-red-500">
-                  X
+                <div onClick={()=>updateSection(section.id,section.title)} className="text-2xl hover:animate-pulse mr-2 p-1 w-10 text-center cursor-pointer ">
+                  <GoPencil />
+                </div>
+                <div onClick={()=>deleteSection(section.id)} className="text-2xl hover:animate-pulse mr-2 p-1 w-10 text-center cursor-pointer text-red-500">
+                <GoTrashcan />
                 </div>
               </div>
             ))
@@ -98,4 +114,4 @@ const Sections: React.FC<SectionsProp> = ({ id }) => {
   )
 }
 
-export default Sections
+export default React.memo(Sections)

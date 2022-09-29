@@ -8,7 +8,7 @@ interface Links {
 }
 
 const links: Links[] = [
-  { title: "Создать", to: "create" },
+  { title: "Разделы", to: "home" },
   { title: "Найти", to: "find" },
   { title: "Выйти", to: "" },
 ]
