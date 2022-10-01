@@ -2,16 +2,18 @@ import express from 'express'
 import dotEnv from 'dotenv'
 import cors from 'cors'
 import session from 'express-session'
-import path from 'path'
 import getTopic from './api/getTopic.js'
 import login from './api/auth/login.js'
-import create from './api/create.js'
-import find from './api/find.js'
+import create from './api/createTopic.js'
+import find from './api/findSection.js'
 import auth from './api/auth.js'
 import logout from './api/logout.js'
-import update from './api/update.js'
+import update from './api/updateTopic.js'
 import deleteTopic from './api/deleteTopic.js'
-import addNewUser from './api/addNewUser.js'
+import addNewUser from './api/user/addNewUser.js'
+import changePassword from './api/user/changePassword.js'
+import deleteUser from './api/user/deleteUser.js'
+import getUsers from './api/user/getUsers.js'
 import upload from './api/upload.js'
 import sections from './api/sections.js'
 import createSection from './api/createSection.js'
@@ -47,6 +49,9 @@ app.use("/api",login)
 app.use("/api",auth)
 app.use("/api",logout)
 app.use("/api",addNewUser)
+app.use("/api",changePassword)
+app.use("/api",deleteUser)
+app.use("/api",getUsers)
 
 
 app.listen(3000)

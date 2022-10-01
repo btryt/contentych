@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react"
+import React, { useEffect, useState,useMemo } from "react"
 import { GoThreeBars } from "react-icons/go"
 import { Link } from "react-router-dom"
 import { useAuth } from "./hooks/useAuth"
@@ -7,15 +7,20 @@ interface Links {
   to: string
 }
 
-const links: Links[] = [
-  { title: "Разделы", to: "home" },
-  { title: "Найти", to: "find" },
-  { title: "Выйти", to: "" },
-]
 
 const Header: React.FC = () => {
   const [openMenu, setOpenMenu] = useState(false)
-  const { isAuth,logOut } = useAuth()
+  const { isAuth,owner,logOut } = useAuth()
+  const links: Links[] = useMemo(() =>(!owner ?[
+    { title: "Разделы", to: "home" },
+    { title: "Найти", to: "find" },
+    { title: "Выйти", to: "" },
+  ]:[
+    { title:"Админ панель",to:"admin"},
+    { title: "Разделы", to: "home" },
+    { title: "Найти", to: "find" },
+    { title: "Выйти", to: "" }
+  ]),[owner])
 
   const open = () => {
     setOpenMenu(true)
@@ -42,10 +47,10 @@ const Header: React.FC = () => {
 
 
   return (
-    <header className="w-full h-20 bg-sky-900 text-white flex items-center shadow-lg">
+    <header style={{backgroundColor:"rgb(38, 43, 41)"}} className="w-full h-20 text-white flex items-center border-b-2 border-gray-600">
       <nav
         className={`bg-stone-600 z-10 h-min w-full flex md:hidden absolute flex-col transition-all duration-500 burger ${
-          openMenu ? "top-0" : "-top-52"
+          openMenu ? "top-0" : "-top-72"
         }`}
       >
         {isAuth &&
@@ -79,7 +84,8 @@ const Header: React.FC = () => {
           {isAuth && links.map((link) => (
             <Link
               key={link.to}
-              className="m-2 border-white hover:bg-gray-500 rounded-lg border-2 p-3 "
+              style={{color:"rgb(176, 169, 159)"}}
+              className="m-2 border-white hover:bg-gray-500 rounded-lg border-b-2 p-3 "
               onClick={()=> !link.to && logOut?.()}
               to={link.to}
             >

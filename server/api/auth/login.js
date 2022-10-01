@@ -12,11 +12,12 @@ router.post("/login",async (req,res)=>{
         return res.status(400).send({message:"Длина логина не более 10 символов"})
     }
     try {
-        const user = await query("SELECT login,password,user_id,admin FROM users WHERE login = $1",[login])
+        const user = await query("SELECT login,password,owner,user_id,admin FROM users WHERE login = $1",[login])
         if(user.rows[0].login === login && user.rows[0].password === password){
             req.session.auth = true
             req.session.user_id = user.rows[0].user_id
             req.session.admin = user.rows[0].admin
+            req.session.owner = user.rows[0].owner
             return res.send({message:"Успешно авторизован"})
         }
         return res.status(404).send({message:"Пользователь не найден"})

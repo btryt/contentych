@@ -4,9 +4,12 @@ const router = Router()
 
 router.get("/auth",async (req,res)=>{
     if(req.session.auth){
-      return res.send({auth:true})
+      const admin =req.session.admin
+      const owner =req.session.owner
+      const user_id = req.session.user_id
+      return res.send({auth:true,admin,owner,user_id})
     }
-    res.send({auth:false})
+    res.send({auth:false,admin:false,owner:false,user_id:null})
 })
 
 export default router

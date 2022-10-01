@@ -4,8 +4,8 @@ import Alert from './Alert'
 import TextEditor from './TextEditor'
 
 interface CreateProps{
-    getTopic: () => void
-    id:number | string | undefined
+    getTopic?: () => void
+    id?:number | string | undefined
 }
 
 const Create:React.FC<CreateProps> = ({getTopic,id}) =>{
@@ -28,7 +28,7 @@ const Create:React.FC<CreateProps> = ({getTopic,id}) =>{
         fetch("/api/create",{method:"POST",headers: { "Content-Type": "application/json" },body:JSON.stringify({title,description,content,id})})
         .then(async (res:Response)=>{
             if(res.ok){
-                getTopic()
+                getTopic?.()
             }
             else {
                 const {message} = await res.json()

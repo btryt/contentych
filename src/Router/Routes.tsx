@@ -1,12 +1,13 @@
 import React from "react"
 import { useRoutes } from "react-router-dom"
+import AdminPage from "../AdminPage"
 import Create from "../Create"
 import Edit from "../Edit"
 import Find from "../Find"
 import { PrivateRoute } from "../HOC/PrivateRoute"
 import Home from "../Home"
 import Login from "../Login"
-import Sections from "../Sections"
+import NotFoundfrom from '../404'
 import Topic from "../Topic"
 
 const Routes: React.FC = () => {
@@ -18,6 +19,14 @@ const Routes: React.FC = () => {
         </PrivateRoute>
       ),
       path: "create",
+    },
+    {
+      element:(
+        <PrivateRoute forAdmin>
+          <AdminPage />
+        </PrivateRoute>
+      ),
+      path:"admin"
     },
     {
       element: (
@@ -56,7 +65,7 @@ const Routes: React.FC = () => {
       path: "login",
     },
     {
-      element: <h1>404</h1>,
+      element: <NotFoundfrom/>,
       path: "*",
     },
   ])
