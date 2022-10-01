@@ -1,11 +1,6 @@
 import React, { useEffect, useRef, useState } from 'react'
 import { GoPencil, GoTrashcan } from "react-icons/go"
 import { useAuth } from './hooks/useAuth'
-// const users = [
-//   {user_id:1,login:"qwert",password:"123456", role:"admin,owner"},
-//   {user_id:2,login:"asdfgh",password:"09876454",role:"admin"},
-//   {user_id:3,login:"poloki",password:"12323sa56",role:""}
-// ]
 
 interface UserState {
   user_id:number

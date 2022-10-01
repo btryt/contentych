@@ -20,7 +20,7 @@ const Login:React.FC = () =>{
     }
 
     return (
-    <div className='flex h-screen justify-center items-center '>
+    <div style={{minHeight:"80vh"}} className='flex justify-center items-center '>
         <div className='px-3 w-full mx-3 flex justify-center'>
             <div style={{backgroundColor:"rgb(38, 43, 41)",color:"rgb(176, 169, 159)"}} className='w-full opacity-80 sm:w-1/2 rounded-md p-4 flex flex-col items-center shadow-lg
             ' >
