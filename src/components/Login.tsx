@@ -1,5 +1,5 @@
 import React,{useRef,MutableRefObject} from 'react'
-import { useAuth } from './hooks/useAuth'
+import { useAuth } from '../hooks/useAuth'
 import { Navigate } from 'react-router-dom'
 const Login:React.FC = () =>{
     const {isAuth,login,loaded} = useAuth()

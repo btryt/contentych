@@ -2,7 +2,7 @@ import React, { useCallback, useEffect, useState } from 'react'
 import { useNavigate, useParams } from 'react-router-dom'
 import BreadCrumbs from './BreadCrumbs'
 import Create from './Create'
-import { useAuth } from './hooks/useAuth'
+import { useAuth } from '../hooks/useAuth'
 import Sections from './Sections'
 
 interface TopicState {
@@ -58,7 +58,7 @@ const Topic:React.FC = () =>{
         fetch("/api/delete",{method:"POST",headers: { "Content-Type": "application/json" },body:JSON.stringify({section_id:params.id})})
         .then(async (res:Response)=>{
             const {message} = await res.json()
-            if(res){
+            if(res.ok){
                 getTopic()
             }
         })
@@ -66,7 +66,7 @@ const Topic:React.FC = () =>{
     return (
     <>
     <Sections id={params.id} title={parent.title}/>
-    <div className='w-full p-2'>
+    <div className='w-full px-4 pb-2'>
         <BreadCrumbs tree={tree} parent={parent} />
     </div>
     {hasTopic ? <div className='w-full mt-2 lg:flex lg:justify-center '>

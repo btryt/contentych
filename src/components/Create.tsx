@@ -46,8 +46,8 @@ const Create:React.FC<CreateProps> = ({getTopic,id}) =>{
     },[errorMessage])
 
     return (
-    <div style={{color:"rgb(176, 169, 159)"}} className=' mt-3 rounded-md h-full  flex lg:justify-center'>
-        <div style={{backgroundColor:"rgb(38, 43, 41)"}}  className='flex flex-col h-full shadow-lg lg:w-2/3'>
+    <div style={{color:"rgb(176, 169, 159)"}} className='mt-3 mx-2 rounded-md h-full  flex lg:justify-center'>
+        <div style={{backgroundColor:"rgb(38, 43, 41)"}}  className='flex flex-col w-full h-full shadow-lg lg:w-2/3'>
         <div style={{borderColor:"rgb(140, 130, 115)"}} className=' border-b-2'>
             <h1 className='text-2xl p-2 text-center'>
                 Создание темы
@@ -61,7 +61,7 @@ const Create:React.FC<CreateProps> = ({getTopic,id}) =>{
                 <label htmlFor='description'>Описание темы (необязательно)</label>
                 <input style={{backgroundColor:"rgb(47, 51, 53)"}} ref={descriptionRef} className='p-1 rounded-sm' id='description' type="text" />
             </div>
-            <div className='m-2 p-2 flex flex-col'>
+            <div className='m-2 p-2'>
              <TextEditor ref={contentRef} />
             </div>
             <div className='p-2 w-full flex justify-end' >

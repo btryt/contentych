@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import Header from './Header'
-import Routes from './Router/Routes'
+import Routes from '../Router/Routes'
 
 function App() {
 

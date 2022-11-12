@@ -1,7 +1,7 @@
 import React, { useEffect, useState,useMemo } from "react"
 import { GoThreeBars } from "react-icons/go"
 import { Link } from "react-router-dom"
-import { useAuth } from "./hooks/useAuth"
+import { useAuth } from "../hooks/useAuth"
 interface Links {
   title: string
   to: string
@@ -78,7 +78,7 @@ const Header: React.FC = () => {
       </div>
       <div className="hidden md:flex mx-3 w-full justify-between">
         <div>
-          <h2>Биология</h2>
+          <Link to="/home">Главная</Link>
         </div>
         <div>
           {isAuth && links.map((link) => (

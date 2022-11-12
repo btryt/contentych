@@ -1,6 +1,6 @@
 import React, { useEffect, useRef, useState } from 'react'
 import { GoPencil, GoTrashcan } from "react-icons/go"
-import { useAuth } from './hooks/useAuth'
+import { useAuth } from '../hooks/useAuth'
 
 interface UserState {
   user_id:number

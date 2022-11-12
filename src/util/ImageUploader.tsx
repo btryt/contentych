@@ -18,7 +18,6 @@ class ImageUploader {
   }
   private selectLocalImage() {
     const input:HTMLInputElement = document.createElement("input")
-    console.log(this.quill.getContents())
     input.setAttribute("type", "file")
     input.click()
     input.onchange = () => {

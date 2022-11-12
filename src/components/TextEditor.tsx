@@ -2,7 +2,7 @@ import React, { ForwardRefRenderFunction, useRef, useState,useEffect } from 'rea
 import ReactQuill,{ Quill } from 'react-quill';
 // @ts-ignore
 import { ImageUpload } from "quill-image-upload";
-import ImageUploader from './util/ImageUploader.js';
+import ImageUploader from '../util/ImageUploader.js';
 // @ts-ignore
 import ImageResize from "quill-image-resize-module-react";
 import "react-quill/dist/quill.snow.css";

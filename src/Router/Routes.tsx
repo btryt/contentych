@@ -1,14 +1,14 @@
 import React from "react"
 import { useRoutes } from "react-router-dom"
-import AdminPage from "../AdminPage"
-import Create from "../Create"
-import Edit from "../Edit"
-import Find from "../Find"
+import AdminPage from "../components/AdminPage"
+import Create from "../components/Create"
+import Edit from "../components/Edit"
+import Find from "../components/Find"
 import { PrivateRoute } from "../HOC/PrivateRoute"
-import Home from "../Home"
-import Login from "../Login"
-import NotFoundfrom from '../404'
-import Topic from "../Topic"
+import Home from "../components/Home"
+import Login from "../components/Login"
+import NotFoundfrom from '../components/404'
+import Topic from "../components/Topic"
 
 const Routes: React.FC = () => {
   const routes = useRoutes([

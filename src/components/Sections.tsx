@@ -1,7 +1,7 @@
 import React, { useCallback, useEffect, useRef, useState } from "react"
 import { Link } from "react-router-dom"
 import { GoPencil, GoTrashcan } from "react-icons/go"
-import { useAuth } from "./hooks/useAuth"
+import { useAuth } from "../hooks/useAuth"
 type SectionsProp = {
   id?: number | string | undefined
   title?: string
@@ -85,7 +85,7 @@ const Sections: React.FC<SectionsProp> = ({ id, title }) => {
     >
       <div className="lg:w-2/4 p-2 m-2 ">
         <h1 className="text-center mb-2 text-lg">
-          Список разделов темы <b className="border-b-2">{title}</b>
+          Список разделов <b className="border-b-2">{title}</b>
         </h1>
         <div className="flex justify-center">
           <input
@@ -102,12 +102,12 @@ const Sections: React.FC<SectionsProp> = ({ id, title }) => {
             Создать
           </button>
         </div>
-        <div className="max-h-72 mt-5 overflow-y-auto break-all section">
+        <div className="max-h-72 mt-5 overflow-y-auto break-all">
           {sections.length ? (
             sections.map((section: SectionState) => (
               <div
                 style={{ backgroundColor: "rgb(58, 63, 66)" }}
-                className="flex mt-3 items-center section__item"
+                className="flex mt-3 items-center"
                 key={section.id}
               >
                 <Link to={`/topic/${section.id}`} className="flex-1 p-3 ">
