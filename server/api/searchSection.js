@@ -4,7 +4,7 @@ import authMiddleware from '../middleware/authMiddleware.js'
 const router = Router()
 
 
-router.get("/find",authMiddleware,async (req,res)=>{
+router.get("/search",authMiddleware,async (req,res)=>{
     const queryParam = req.query
 
     try {

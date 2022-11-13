@@ -26,12 +26,12 @@ router.get("/topic/:id",authMiddleware,async (req,res)=>{
         const parent = await query("SELECT parent_id, title FROM section WHERE id = $1",[id])
         const tree = await query(queryPattern,[parent.rows.length ? parent.rows[0].parent_id: 0,id])
          res.send({topic:topic.rows,parent:parent.rows,tree:tree.rows})
-    
+
     } catch (error) {
         console.log(error)
         res.status(500).send({message:"Проблемы с доступом к теме"})
     }
-
+    
 })
 
 export default router

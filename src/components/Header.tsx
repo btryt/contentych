@@ -13,12 +13,12 @@ const Header: React.FC = () => {
   const { isAuth,owner,logOut } = useAuth()
   const links: Links[] = useMemo(() =>(!owner ?[
     { title: "Разделы", to: "home" },
-    { title: "Найти", to: "find" },
+    { title: "Найти", to: "search" },
     { title: "Выйти", to: "" },
   ]:[
     { title:"Админ панель",to:"admin"},
     { title: "Разделы", to: "home" },
-    { title: "Найти", to: "find" },
+    { title: "Найти", to: "search" },
     { title: "Выйти", to: "" }
   ]),[owner])
 

@@ -5,7 +5,7 @@ import session from 'express-session'
 import getTopic from './api/getTopic.js'
 import login from './api/auth/login.js'
 import create from './api/createTopic.js'
-import find from './api/findSection.js'
+import search from './api/searchSection.js'
 import auth from './api/auth.js'
 import logout from './api/logout.js'
 import update from './api/updateTopic.js'
@@ -41,7 +41,7 @@ app.use("/api",createSection)
 app.use("/api",deleteSection)
 app.use("/api",updateSection)
 app.use("/api",create)
-app.use("/api",find)
+app.use("/api",search)
 app.use("/api",update)
 app.use("/api",upload)
 app.use("/api",deleteTopic)

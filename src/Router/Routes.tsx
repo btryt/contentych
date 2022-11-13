@@ -3,7 +3,7 @@ import { useRoutes } from "react-router-dom"
 import AdminPage from "../components/AdminPage"
 import Create from "../components/Create"
 import Edit from "../components/Edit"
-import Find from "../components/Find"
+import Search from "../components/Search"
 import { PrivateRoute } from "../HOC/PrivateRoute"
 import Home from "../components/Home"
 import Login from "../components/Login"
@@ -31,10 +31,10 @@ const Routes: React.FC = () => {
     {
       element: (
         <PrivateRoute>
-          <Find />
+          <Search />
         </PrivateRoute>
       ),
-      path: "find",
+      path: "search",
     },
     {
       element: (
