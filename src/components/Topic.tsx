@@ -11,13 +11,25 @@ interface TopicState {
     description: string
 }
 
+interface CurrentSectionState{
+    parent_id:number | null
+    title:string
+}
+
+interface TreeState{
+    id:number
+    parent_id:number | null
+    title:string
+    level:number
+}
+
 const Topic:React.FC = () =>{
     const {admin} = useAuth()
     const params = useParams()
     const location = useNavigate()
     const [topic,setTopic] = useState<TopicState>({title:"",description:"",content:""})
-    const [tree,setTree] = useState<any>([])
-    const [parent,setParent] = useState<any>({parent_id:null,title:""})
+    const [tree,setTree] = useState<TreeState[] | []>([])
+    const [currentSection,setCurrentSection] = useState<CurrentSectionState>({parent_id:null,title:""})
     const [hasTopic,setHasTopic] = useState(false)
 
     const getTopic = useCallback(() =>{
@@ -34,9 +46,12 @@ const Topic:React.FC = () =>{
                     setHasTopic(false)
                     setTopic({title:"",description:"",content:""})
                 }
-                if(data.parent.length > 0){
-                    const parentData = data.parent[0]
-                    setParent({parent_id:parentData.parent_id,title:parentData.title})
+                if(data.currentSection.length > 0){
+                    const parentData = data.currentSection[0]
+                    setCurrentSection({parent_id:parentData.parent_id,title:parentData.title})
+                }
+                else{
+                    location("/home")
                 }
                 if(data.tree.length > 0){
                     setTree(data.tree)
@@ -65,9 +80,9 @@ const Topic:React.FC = () =>{
     }
     return (
     <>
-    <Sections id={params.id} title={parent.title}/>
+    <Sections id={params.id} title={currentSection.title}/>
     <div className='w-full px-4 pb-2'>
-        <BreadCrumbs tree={tree} parent={parent} />
+        <BreadCrumbs tree={tree} current={currentSection} />
     </div>
     {hasTopic ? <div className='w-full mt-2 lg:flex lg:justify-center '>
         <div  className='mx-3 p-2 text-slate-400  rounded-sm break-all lg:w-3/4 border-2 border-slate-700'>

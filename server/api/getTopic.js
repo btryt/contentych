@@ -23,9 +23,9 @@ router.get("/topic/:id",authMiddleware,async (req,res)=>{
     const {id} = req.params
     try {
         const topic = await query("SELECT title, description, created_at, content FROM topic WHERE section_id = $1",[id])
-        const parent = await query("SELECT parent_id, title FROM section WHERE id = $1",[id])
-        const tree = await query(queryPattern,[parent.rows.length ? parent.rows[0].parent_id: 0,id])
-         res.send({topic:topic.rows,parent:parent.rows,tree:tree.rows})
+        const currentSection = await query("SELECT parent_id, title FROM section WHERE id = $1",[id])
+        const tree = await query(queryPattern,[currentSection.rows.length ? currentSection.rows[0].parent_id: 0,id])
+         res.send({topic:topic.rows,currentSection:currentSection.rows,tree:tree.rows})
 
     } catch (error) {
         console.log(error)
